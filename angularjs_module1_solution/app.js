@@ -11,33 +11,28 @@
 
     $scope.checkIfTooMuch = function () {
 
-      var lunchmenu = $scope.lunch_menu;
-      if (typeof lunchmenu === "undefined" || lunchmenu.length == 0)
+      var mesg = "Please enter data first";
+      if (!angular.isUndefined($scope.lunch_menu) && $scope.lunch_menu.length > 0)
       {
-        $scope.msg = "Please enter data first";
-        return;
-      }
-      var arrayOfItems = $scope.lunch_menu.split(',');
-      var itemCnt = 0;
-      for (var i = 0; i < arrayOfItems.length; i++) {
-        if (arrayOfItems[i] != '')
-        {
-          itemCnt++;
+        var arrayOfItems = $scope.lunch_menu.split(',');
+        var itemCnt = 0;
+        for (var i = 0; i < arrayOfItems.length; i++) {
+          if (arrayOfItems[i] != '')
+          {
+            itemCnt++;
+          }
         }
-      }
-      if (itemCnt == 0)
-      {
-        $scope.msg = "Please enter data first";
-      }
-      else if (itemCnt> 3)
-      {
-        $scope.msg = "Too much!";
-      }
-      else  {
-        $scope.msg = "Enjoy!";
-      }
+        if (itemCnt > 0)
+        {
+          mesg = "Enjoy!";
+        }
+        if (itemCnt> 3)
+        {
+          mesg = "Too much!";
+        }
 
-
+      }
+      $scope.msg = mesg;
     }
   }
 
