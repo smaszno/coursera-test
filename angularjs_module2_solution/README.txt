@@ -1,0 +1,1 @@
+Solution for Module 2 Coding Assignment (Introduction to AngularJS.)
