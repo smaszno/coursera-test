@@ -37,16 +37,24 @@
 
     nDownCtrl.getMatchedMenuItems = function ()
     {
-      var promise = MenuSearchService.getMatchedMenuItems(nDownCtrl.searchTerm);
-      promise.then(function (items)
+      var searchTerm = nDownCtrl.searchTerm;
+      if (angular.isDefined(searchTerm) && searchTerm != "")
       {
-// fill the found array (items can be an empty array, but it will not be equal to null)
-          nDownCtrl.found = items;
-      })
-      .catch(function (error) {
-// log error
-        console.log(error);
-      }) ;
+        var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+        promise.then(function (items)
+        {
+  // fill the found array (items can be an empty array, but it will not be equal to null)
+            nDownCtrl.found = items;
+        })
+        .catch(function (error) {
+  // log error
+          console.log(error);
+        }) ;
+      }
+      else {
+        // if nobody specified the filter, there is no need to call to server.
+        nDownCtrl.found = [];
+      }
     }
 
 
@@ -58,8 +66,8 @@
   }
 
 // Protection from minification - again
- MenuSearchService.$inject=['$http', '$filter', 'MenuItemsURL'];
-  function MenuSearchService($http, $filter, MenuItemsURL)
+ MenuSearchService.$inject=['$http', 'MenuItemsURL'];
+  function MenuSearchService($http, MenuItemsURL)
   {
     var msSrv = this;
 // gets items and filters according to searchTerm
@@ -77,7 +85,7 @@
 // get description
           var desc = item.description;
 // and check it - IMPORTANT - I am checking all occurences of the searchTerm, independent of the case (i.e. Chicken, CHICKEN, chicken should give the same results)
-          if (angular.isDefined(desc) && desc != null && $filter('lowercase')(desc).indexOf($filter('lowercase')(searchTerm)) >= 0)
+          if (angular.isDefined(desc) && desc != null && desc.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0)
           {
             foundItems.push(item);
           }
