@@ -1,0 +1,9 @@
+
+  <ul>
+    <li ng-repeat="item in fndItems">
+      {{ item.name }}, {{ item.short_name }}, {{ item.description }}
+      <button ng-click="onRemove({index: $index});">Don't want this one!</button>
+    </li>
+  </ul>
+  <!-- if there is not data, fndItems == null, if there is data (i.e. we asked server) fndItems != null, but can have length=0 -->
+  <div ng-if="fndItems != null &amp;&amp; fndItems.length == 0">Nothing found</div>
