@@ -7,7 +7,7 @@
   .service('MenuSearchService', MenuSearchService)
   // making URL a constant, just in case if someone wanted to change it, so he would not need to look further into code
   // however, the new URL should return the same JSON structure ("menu_items" array of menu items :) )
-  .constant('MenuItemsURL', "http://davids-restaurant.herokuapp.com/menu_items.json")
+  .constant('MenuItemsURL', "https://davids-restaurant.herokuapp.com/menu_items.json")
   // and now directive
   .directive('foundItems', FoundItemsDirective);
 
