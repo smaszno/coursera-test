@@ -50,6 +50,17 @@ body {
   vertical-align: middle;
 }
 
+legend
+{
+	color: #fff;
+}	
+
+input
+{
+	color: #000;
+	margin-bottom: 5px;
+}
+
 #nav-list {
   margin-top: 10px;
 }

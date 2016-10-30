@@ -1,0 +1,23 @@
+<div class= "container">
+   <div ng-if="!miCtrl.userData">
+      <span>Not Signed Up Yet.</span> <a ui-sref="public.sign-up">Sign up Now!</a>
+    </div>
+    <div ng-if="miCtrl.userData">
+        <h2>Registered as:</h2>
+        <h3>
+            {{miCtrl.userData.first_name}} {{miCtrl.userData.last_name}}
+        </h3>
+        <h3>
+            {{miCtrl.userData.email}}
+        </h3>
+        <h3>
+          {{miCtrl.userData.phone}}
+        </h3>
+        <h3>Favourite dish:<h3>
+            <menu-item
+                       menu-item="miCtrl.userData.favourite_dish">
+            </menu-item>
+    </div>
+
+
+</div>

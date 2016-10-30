@@ -1,0 +1,57 @@
+<div class = "container">
+<div ng-controller="SignUpController as su">
+  <fieldset>
+    <legend>Please sign up for a newsletter</legend>
+    <form name='suForm' novalidate>
+
+      <input type="text" name="first_name" placeholder="First name"
+        ng-model="su.user.first_name"
+        required>
+        <span
+          ng-if="suForm.first_name.$error.required && suForm.first_name.$touched">
+          Please specify your first name
+        </span>
+        <br>
+      <input type="text" name="last_name" placeholder="Last name"
+        ng-model="su.user.last_name"
+        required>
+        <span
+          ng-if="suForm.last_name.$error.required && suForm.last_name.$touched">
+          Please specify your last name
+        </span>
+        <br>
+      <input type="email" name="email" placeholder="Email"
+        ng-model="su.user.email"
+        required>
+        <span ng-if="suForm.email.$invalid && suForm.email.$touched">
+          Please specify a valid email address: handle@domain format
+        </span>
+        <br>
+      <input type="text" name="phone" placeholder="Phone ###-###-####"
+        ng-model="su.user.phone"
+        pattern="(\d{3})-(\d{3})-(\d{4})">
+        <span ng-if="suForm.phone.$invalid && suForm.phone.$touched">
+          Phone number must be in the format ###-###-####.
+        </span>
+        <br>
+      <input type="text" name="favourite_dish" placeholder="Favourite item code"
+        ng-model="su.user.favourite_dish"
+        required >
+        <span
+          ng-if="suForm.favourite_dish.$error.required && suForm.favourite_dish.$touched">
+          Please specify your favourite dish
+        </span>
+        <span
+          ng-if="su.dish_invalid">
+          No such menu number exists
+        </span>
+        <br>
+      <button
+        ng-disabled="suForm.$invalid"
+        ng-click="su.submit()">Submit</button>
+    </form>
+  </fieldset>
+  <br>
+  <span ng-if="su.saved">Your information has been saved</span>
+</div>
+</div>
